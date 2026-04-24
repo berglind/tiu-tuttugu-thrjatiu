@@ -648,19 +648,12 @@ export default function Solitaire() {
             10, 20, or 30.
           </li>
           <li>
-            Valid patterns (by position):{' '}
-            {activeColumn && patterns.length > 0
-              ? patterns
-                  .map((p) => `[${p.map((i) => i + 1).join(', ')}]`)
-                  .join(', ')
-              : 'need at least 3 cards in the active column'}
-            .
+           Available cards with the last card are the top 2 cards (only the second on top if the top one matched) and the last two cards.
           </li>
           <li>
-            If no removal happens between deals, the active column advances on
-            the next deal.
+             Aces = 1, Numbers = Face Value, Face Cards (J, Q, K) = 10.
           </li>
-          <li>Clear every column to win. Aces = 1, face cards = 10.</li>
+          <li>Clear every column to win.</li>
         </ul>
       </section>
     </div>
