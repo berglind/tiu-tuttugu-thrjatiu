@@ -1,46 +1,55 @@
-# Tíu, tuttugu, þrjátíu (Icelandic Solitaire)
+# Tíu, tuttugu, þrjátíu — Icelandic Solitaire
 
-A clean, modern web implementation of the classic Icelandic Solitaire card game "Tíu, tuttugu, þrjátíu" (Ten, Twenty, Thirty). Built with React and Tailwind CSS.
+A single-player, browser-based implementation of the Icelandic solitaire variant
+*Tíu, tuttugu, þrjátíu* ("Ten, twenty, thirty"). The game deals cards from a
+standard 52-card deck into seven columns; the player removes trios of cards
+whose face values sum to 10, 20, or 30 in specific positional patterns, until
+every column has been cleared.
 
-## 🎯 Objective
-The goal of the game is to completely clear all columns on the board by finding trios of cards that add up to 10, 20, or 30.
+## Tech stack
 
-## 🃏 Card Values
-* **Aces:** 1
-* **Number Cards (2-10):** Face value
-* **Face Cards (J, Q, K):** 10
+- [TanStack Start](https://tanstack.com/start) (React 19 + TanStack Router)
+- Vite 7
+- Tailwind CSS 4
+- TypeScript 5 (strict)
+- Netlify (deployment)
 
-## 📖 How to Play
+## Running locally
 
-**1. The Setup**
-The game starts with 7 columns, each dealt 2 cards face-up. One column is always highlighted with a yellow border—this is your **Active Column**.
+```bash
+npm install
+npm run dev
+```
 
-**2. Dealing Cards**
-Click the **Deal** button (or click the deck) to deal one card into the Active Column. 
-* If you make a successful match and remove cards, the Active Column stays where it is.
-* If you deal a card without making a match, the Active Column automatically advances to the next column on the right for the next deal.
+The dev server runs on <http://localhost:3000>. For full Netlify emulation
+(including edge + functions if they are added later) use:
 
-**3. Making a Match**
-You can only remove cards from the **Active Column**. You must select exactly **3 cards** whose combined value equals exactly **10, 20, or 30**.
+```bash
+netlify dev
+```
 
-**4. Valid Card Positions**
-You cannot pick just any three cards in the column! The trio must be in one of these specific positional patterns:
-* The **first three** cards in the column.
-* The **first two** cards AND the **last** card in the column.
-* The **first** card AND the **last two** cards in the column.
-* The **last three** cards
+which serves the site on port 8888.
 
-*(Note: To keep the game board tidy, long columns will visually "collapse" the middle cards. Don't worry—the cards you need to make valid matches will always remain visible at the top and bottom of the stack!)*
+## Production build
 
-**5. Winning the Game**
-When a column is completely emptied, it disappears. You win the game when you have successfully cleared all 7 columns!
+```bash
+npm run build
+npm run preview
+```
 
-## 💻 Tech Stack
-* React
-* Tailwind CSS
-* Vite
+## How to play
 
-## ⚖️ License
-Copyright 2026. All rights reserved. 
+1. Click **Deal** (or the deck itself) to place a card in the highlighted
+   "active" column.
+2. In the active column, click exactly three cards. They must:
+   - Sum to **10**, **20**, or **30** (Aces = 1, face cards = 10).
+   - Occupy one of these positional patterns:
+     `[0,1,2]`, `[0,last-1,last]`, `[0,1,last]`, or `[last-2,last-1,last]`.
+3. A valid trio is sent to the bottom of the deck and the active column stays
+   where it is. If it empties, that column is removed from play entirely.
+4. If you deal again without having removed anything, the active column
+   advances by one.
+5. Clear every column to win.
 
-This source code is provided for personal, non-commercial use and educational purposes only. You may not use, distribute, or modify this code for any commercial purpose without explicit written permission.
+The **Undo** button reverses the last deal or removal; **New Game** reshuffles
+and deals a fresh round.
