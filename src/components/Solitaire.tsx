@@ -443,7 +443,11 @@ function CardView({ card, selected, selectable, onClick, marginTop, zIndex }: Ca
       className="card-deal-wrap"
       style={wrapperStyle}
     >
-      <style>{`@keyframes deal { from { transform: translateY(-60px) scale(0.8); } to { transform: translateY(0) scale(1); } }`}</style>
+      <style>{`@keyframes deal {
+          0% { opacity: 0; transform: translateY(-60px) scale(0.8); }
+          1% { opacity: 1; transform: translateY(-60px) scale(0.8); }
+          100% { opacity: 1; transform: translateY(0) scale(1);
+        }`}</style>
       <button
         type="button"
         onClick={selectable ? onClick : undefined}
