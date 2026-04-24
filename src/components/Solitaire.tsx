@@ -593,7 +593,7 @@ export default function Solitaire() {
       </section>
 
       <section className="relative overflow-x-auto pb-4">
-        <div className="flex justify-center gap-2 md:gap-4 pt-12 px-1">
+        <div className="flex justify-center gap-2 md:gap-4 pt-6 px-1">
           {state.columns.map((col, colIdx) => {
             const isActive = colIdx === state.activeColumnIndex
             const selectable = isActive ? selectableIndices(col.length) : null
