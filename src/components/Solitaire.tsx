@@ -593,7 +593,7 @@ export default function Solitaire() {
       </section>
 
       <section className="relative overflow-x-auto pb-4">
-        <div className="flex justify-center gap-2 md:gap-4 pt-6 px-1">
+        <div className="flex justify-center gap-2 md:gap-4 pt-12 px-1">
           {state.columns.map((col, colIdx) => {
             const isActive = colIdx === state.activeColumnIndex
             const selectable = isActive ? selectableIndices(col.length) : null
@@ -601,7 +601,7 @@ export default function Solitaire() {
               <div
                 key={colIdx}
                 className={[
-                  'flex-shrink-0 rounded-xl pt-12 px-2 pb-4 border-2 transition-colors w-[8.5rem]',
+                  'flex-shrink-0 rounded-xl pt-6 px-2 pb-4 border-2 transition-colors w-[8.5rem]',
                   isActive
                     ? 'border-amber-400 bg-amber-400/10 shadow-[0_0_30px_rgba(251,191,36,0.35)]'
                     : 'border-slate-700/60 bg-slate-900/40',
