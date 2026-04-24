@@ -303,7 +303,7 @@ function isRed(suit: Suit): boolean {
 const CARD_HEIGHT_PX = 168
 const STANDARD_OVERLAP_PX = -132
 const COLLAPSED_OVERLAP_PX = -(CARD_HEIGHT_PX - 5)
-const COLLAPSE_THRESHOLD = 10
+const COLLAPSE_THRESHOLD = 9
 const DEAL_STAGGER_MS = 85
 
 function getCardOffset(cardIdx: number, colLength: number): number {
@@ -443,11 +443,6 @@ function CardView({ card, selected, selectable, onClick, marginTop, zIndex }: Ca
       className="card-deal-wrap"
       style={wrapperStyle}
     >
-      <style>{`@keyframes deal {
-          0% { opacity: 0; transform: translateY(-60px) scale(0.8); }
-          1% { opacity: 1; transform: translateY(-60px) scale(0.8); }
-          100% { opacity: 1; transform: translateY(0) scale(1);
-        }`}</style>
       <button
         type="button"
         onClick={selectable ? onClick : undefined}
@@ -593,7 +588,7 @@ export default function Solitaire() {
       </section>
 
       <section className="relative overflow-x-auto pb-4">
-        <div className="flex justify-center gap-2 md:gap-4 pt-12 px-1">
+        <div className="flex justify-center gap-2 md:gap-4 pt-6 px-1">
           {state.columns.map((col, colIdx) => {
             const isActive = colIdx === state.activeColumnIndex
             const selectable = isActive ? selectableIndices(col.length) : null
@@ -601,7 +596,7 @@ export default function Solitaire() {
               <div
                 key={colIdx}
                 className={[
-                  'flex-shrink-0 rounded-xl pt-6 px-2 pb-4 border-2 transition-colors w-[8.5rem]',
+                  'flex-shrink-0 rounded-xl pt-4 px-2 pb-4 border-2 transition-colors w-[8.5rem]',
                   isActive
                     ? 'border-amber-400 bg-amber-400/10 shadow-[0_0_30px_rgba(251,191,36,0.35)]'
                     : 'border-slate-700/60 bg-slate-900/40',
