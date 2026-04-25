@@ -111,7 +111,6 @@ function validPatterns(columnLength: number): number[][] {
   if (columnLength < 3) return []
   const last = columnLength - 1
   const patterns = [
-    [0, 1, 2],
     [0, last - 1, last],
     [0, 1, last],
     [last - 2, last - 1, last],
