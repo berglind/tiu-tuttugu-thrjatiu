@@ -432,25 +432,38 @@ function CardView({ card, selected, selectable, onClick, marginTop, zIndex }: Ca
     marginTop,
     zIndex,
     animationDelay: `${card.dealOrder * DEAL_STAGGER_MS}ms`,
-    animationName: 'deal',
-    animationDuration: '0.35s',
-    animationTimingFunction: 'ease-out',
+    animationName: 'dealFlight',
+    animationDuration: '0.6s',
+    animationTimingFunction: 'cubic-bezier(0.2, 0.8, 0.2, 1)', // This makes it "snap" into place
     animationFillMode: 'backwards',
-  }
+    // These variables tell the card to start from the top-left area
+    '--startX': '-350px', 
+    '--startY': '-250px'
+  } as any;
 
   return (
     <div
       className="card-deal-wrap"
       style={wrapperStyle}
     >
+    <style>{` @keyframes dealFlight {
+          0% { 
+            opacity: 0;
+            /* This moves the card to roughly where your deck sits at the top left */
+            transform: translate(var(--startX), var(--startY)) rotate(-15deg) scale(0.5); 
+          }
+          10% { opacity: 1; }
+          100% { 
+            opacity: 1;
+            transform: translate(0, 0) rotate(0deg) scale(1); 
+          }
+        }`}
+      </style>
       <button
         type="button"
         onClick={selectable ? onClick : undefined}
         disabled={!selectable}
         aria-disabled={!selectable}
-        style={{
-          transition: 'transform 150ms ease-out',
-        }}
         className={[
           'relative w-[7.5rem] h-[10.5rem] rounded-xl shadow-md border bg-white block',
           'select-none overflow-hidden',
